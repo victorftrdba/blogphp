@@ -5,7 +5,6 @@ if($_SESSION) {
     header("Location: ../layout/app.php?jaLogado");
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 

@@ -1,6 +1,5 @@
 <?php
 session_start();
-session_regenerate_id();
 if(!$_SESSION){
     header("Location: ../login/app.php?permissaoNegada");
 }
