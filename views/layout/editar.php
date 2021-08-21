@@ -1,5 +1,9 @@
 <?php
-include_once '../../database/Configs.php';
+session_start();
+if(!$_SESSION){
+    header("Location: ../login/app.php?permissaoNegada");
+}
+include '../../Controllers/Post.php';
 ?>
 
 <!DOCTYPE html>

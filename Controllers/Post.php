@@ -1,27 +1,27 @@
 <?php
-
-namespace Database\Configs;
+namespace Controllers\Post;
+use Database\Config;
 use PDO;
 
-class Database {
-    protected $server = 'mysql:dbname=blogphp;host=localhost';
-    protected $user = 'root';
-    protected $pass = '';
-
-    public function index() {
+class Post {
+        protected $server = 'mysql:dbname=blogphp;host=localhost';
+        protected $user = 'root';
+        protected $pass = '';
+        
+        public function index() {
         try {
         $pdo = new PDO($this->server, $this->user, $this->pass);
         $stmt = $pdo->prepare('SELECT * FROM posts');
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {
-            echo "Um erro foi encontrado: ". $e->getError();
+            echo "Um erro foi encontrado: ". $e->getMessage();
         }
 
         return $result;
     }
-
-    public function store($title, $body, $status) {
+    
+      public function store($title, $body, $status) {
         try {
         $pdo = new PDO($this->server, $this->user, $this->pass);
         $stmt = $pdo->prepare("INSERT INTO posts (title, body, status) VALUES (?, ?, ?)");
@@ -56,8 +56,10 @@ class Database {
         } catch(Exception $e) {
             echo "Um erro foi encontrado: " . $e->getMessage();
         }
-        }
     }
+}
 
-$c = new Database;
+$c = new Post;
 $show = $c->index();
+
+?>

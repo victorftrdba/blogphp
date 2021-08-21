@@ -1,6 +1,7 @@
 <div class="container mb-5 mt-5">
     <div class="row justify-content-center">
         <div class="col-10">
+            <p class="mb-0 fw-bold">Bem-vindo <?php print_r($_SESSION['user']) ?></p>
             <?php if(isset($_GET['sucesso'])) { ?>
 
             <div class="bg-info shadow-sm text-white rounded p-4 fw-bold mb-5">
@@ -29,7 +30,7 @@
             </div>
             <?= exit() ?>
             <?php } ?>
-
+            <a href="../login/logout.php">Sair</a>
             <table class="table shadow">
                 <thead>
                     <tr>

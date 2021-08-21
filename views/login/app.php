@@ -1,10 +1,9 @@
 <?php
 session_start();
-session_regenerate_id();
-if(!$_SESSION){
-    header("Location: ../login/app.php?permissaoNegada");
+include '../../Controllers/User.php';
+if($_SESSION) {
+    header("Location: ../layout/app.php?jaLogado");
 }
-include '../../Controllers/Post.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,14 +20,10 @@ include '../../Controllers/Post.php';
     <link rel="stylesheet" href="">
 </head>
 
-<body>
+<body class="bg-danger">
 
     <?php
-    include('../partials/header.php');
-
-    include('../home/index.php');
-
-    include('../partials/footer.php');
+    include('../login/index.php');
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
