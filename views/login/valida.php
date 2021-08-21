@@ -4,8 +4,8 @@ if(!$_SESSION){
     header("Location: ../login/app.php?permissaoNegada");
 }
 foreach($user as $u) {
-if($u->user = $_POST['user']) {
-    if($u->password = $_POST['password']) {
+if($_POST['user'] == $u->user) {
+    if($_POST['password'] == $u->password) {
     session_start();
     echo "Usuário encontrado!";
     $_SESSION['user'] = $_POST['user'];
