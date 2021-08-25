@@ -1,6 +1,5 @@
 <?php
 session_start();
-include '../../Controllers/User.php';
 if($_SESSION) {
     header("Location: ../layout/app.php?jaLogado");
 }

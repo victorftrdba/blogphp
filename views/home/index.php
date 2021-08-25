@@ -9,6 +9,20 @@
             </div>
 
             <?php } ?>
+            <?php if(isset($_GET['loginSucesso'])) { ?>
+
+            <div class="bg-info shadow-sm text-white rounded p-4 fw-bold mb-5">
+                Bem-vindo! <?php $_SESSION['user'] ?>
+            </div>
+
+            <?php } ?>
+            <?php if(isset($_GET['jaLogado'])) { ?>
+
+            <div class="bg-danger shadow-sm text-white rounded p-4 fw-bold mb-5">
+                Você já está logado!
+            </div>
+
+            <?php } ?>
             <?php if(isset($_GET['excluir'])) { ?>
             <div class="bg-success shadow-sm text-white rounded p-4 fw-bold mb-5">
                 Excluído com sucesso

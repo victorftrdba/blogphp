@@ -1,26 +1,28 @@
 <?php
-include('../../Controllers/User.php');
-if(!$_SESSION){
-    header("Location: ../login/app.php?permissaoNegada");
+if($_SESSION) {
+    header("Location: ../layout/app.php?jaLogado");
 }
-foreach($user as $u) {
-if($_POST['user'] == $u->user) {
-    if($_POST['password'] == $u->password) {
+try {
+$pdo = new PDO('mysql:dbname=blogphp;host:localhost', 'root', '');
+$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$stmt = $pdo->prepare('SELECT * FROM users WHERE user = :user');
+$stmt->bindValue(":user", $_POST['user']);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_OBJ);
+} catch (Exception $e) {
+    "Erro encontrado ".$e->getMessage();
+}
+
+if($result->user && trim(md5($_POST['password'])) == trim($result->password)) {
+    echo "Logou";
     session_start();
-    echo "Usuário encontrado!";
-    $_SESSION['user'] = $_POST['user'];
+    $_SESSION['user'] = $result->user;
     header("Location: ../layout/app.php?loginSucesso");
-    exit();
-    }
-    else {
-        echo "Senha incorreta!";
-        header("Location: app.php?loginErro");
-        exit();
-    }
+    session_start();
 } else {
-    echo "Usuário incorreto!";
+    echo "Não logou";
     header("Location: app.php?loginErro");
     exit();
-    }
 }
+
 ?>
